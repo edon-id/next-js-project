@@ -15,7 +15,7 @@ const Teachers: React.FC<Props> = ({ data }) => {
           </div>
           {data.map((teacher) => {
             return (
-              <div className="col-lg-4 col-sm-6 mb-5">
+              <div key={teacher.id} className="col-lg-4 col-sm-6 mb-5">
                 <div className="card border-0 rounded-0 hover-shadow">
                   <img
                     className="card-img-top rounded-0"

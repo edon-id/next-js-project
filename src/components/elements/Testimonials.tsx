@@ -22,7 +22,7 @@ const Testimonials: React.FC<Props> = ({ data, title, content }) => {
             <div className="row">
               {data.map((testimonial) => {
                 return (
-                  <div className="col-lg-6">
+                  <div key={testimonial.id} className="col-lg-6">
                     <div className="test-inner ">
                       <div className="test-author-thumb d-flex">
                         <img

@@ -1,9 +1,18 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Header: React.FC = () => {
   const { pathname } = useRouter();
+  const [openMenu, setOpenMenu] = useState<boolean>(false);
+
+  const toggleMenu = () => {
+    setOpenMenu(!openMenu);
+  };
+
+  const closeMenu = () => {
+    setOpenMenu(!openMenu);
+  };
 
   return (
     <header className="fixed-top header nav-bg">
@@ -59,14 +68,23 @@ const Header: React.FC = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span className="navbar-toggler-icon"></span>
+              <span onClick={toggleMenu} className="navbar-toggler-icon"></span>
             </button>
 
-            <div className="collapse navbar-collapse" id="navigation">
+            <div
+              className={
+                openMenu === true
+                  ? `collapse navbar-collapse`
+                  : `navbar-collapse`
+              }
+              id="navigation"
+            >
               <ul className="navbar-nav ml-auto text-center">
                 <li className={`nav-item ${pathname === "/" ? "active" : ""}`}>
                   <Link href="/">
-                    <a className="nav-link">Home</a>
+                    <a className="nav-link" onClick={closeMenu}>
+                      Home
+                    </a>
                   </Link>
                 </li>
                 <li
@@ -75,7 +93,9 @@ const Header: React.FC = () => {
                   }`}
                 >
                   <Link href="/about">
-                    <a className="nav-link">About</a>
+                    <a className="nav-link" onClick={closeMenu}>
+                      About
+                    </a>
                   </Link>
                 </li>
                 <li
@@ -84,7 +104,9 @@ const Header: React.FC = () => {
                   }`}
                 >
                   <Link href="/courses">
-                    <a className="nav-link">COURSES</a>
+                    <a className="nav-link" onClick={closeMenu}>
+                      COURSES
+                    </a>
                   </Link>
                 </li>
                 <li
@@ -93,7 +115,9 @@ const Header: React.FC = () => {
                   }`}
                 >
                   <Link href="/contact">
-                    <a className="nav-link">CONTACT</a>
+                    <a className="nav-link" onClick={closeMenu}>
+                      CONTACT
+                    </a>
                   </Link>
                 </li>
               </ul>
